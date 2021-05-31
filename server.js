@@ -9,14 +9,14 @@ wss.on('connection', function connection(ws, req) {
   ws.on('message', function incoming(data) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-    client.send('{"ip":"'+ip+'","id":"'+id+'","message":"'+data+'"}');
+    client.send('{message":"'+data+'"}');
       }
     });
   });
     ws.on('close', function incoming(data)  {
          wss.clients.forEach(function each(client) {
          if (client.readyState === WebSocket.OPEN) {
-           client.send('{"ip":"'+ip+'","id":"'+id+'","message":"closed"}');
+           client.send('{"message":"closed"}');
       }
     });
     });
